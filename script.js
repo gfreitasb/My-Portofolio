@@ -72,3 +72,13 @@ window.addEventListener('scroll', () => {
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 loadProjects();
+
+const backToTop = document.querySelector('#backToTop');
+backToTop?.addEventListener('click', event => {
+  event.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+  });
+  history.replaceState(null, '', `${location.pathname}${location.search}`);
+});
